@@ -1,22 +1,30 @@
-# Telegram bot Webhook with PHP tutorial #1
-preparation:
-- OpenSSL (i will use self sign for this tutorial)
-- Nginx 
-- PHP
-- cURL
-- Telegram bot with token
+<h1 id="telegrambotwebhookwithphptutorial1">Telegram bot Webhook with PHP tutorial #1</h1>
 
-Use openssl create private key and public key(PEM file)
-```
-$ openssl req -newkey rsa:2048 -sha256 -nodes -keyout /etc/nginx/sslkeys/botname.key -x509 -days 365 -out /etc/nginx/sslkeys/botname.pem -subj "/C=CN/ST=Hong Kong/L=Hong Kong/O=Your Company/CN=subdomain.domain.com"
-```
-config your nginx
-```
-vim /etc/nginx/conf.d/subdomain.domain.conf
-```
+<p>preparation:</p>
 
-```
-listen       443 ssl;
+<ul>
+    <li>OpenSSL (i will use self sign for this tutorial)</li>
+
+    <li>Nginx </li>
+
+    <li>PHP</li>
+
+    <li>cURL</li>
+
+    <li>Telegram bot with token</li>
+</ul>
+
+<p>Use openssl create private key and public key(PEM file)</p>
+
+<pre><code>$ openssl req -newkey rsa:2048 -sha256 -nodes -keyout /etc/nginx/sslkeys/botname.key -x509 -days 365 -out /etc/nginx/sslkeys/botname.pem -subj "/C=CN/ST=Hong Kong/L=Hong Kong/O=Your Company/CN=subdomain.domain.com"
+</code></pre>
+
+<p>config your nginx</p>
+
+<pre><code>vim /etc/nginx/conf.d/subdomain.domain.conf
+</code></pre>
+
+<pre><code>listen       443 ssl;
 server_name  subdomain.domain.com;
 
 root /var/www/bot;
@@ -38,53 +46,55 @@ DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-
 ssl_prefer_server_ciphers   on;
 
 location / {
-try_files $uri $uri/ /index.php;
-index  index.html index.htm index.php;
+    try_files $uri $uri/ /index.php;
+    index  index.html index.htm index.php;
 
 }
 error_page   500 502 503 504  /50x.html;
 location = /50x.html {
-root   /usr/share/nginx/html;
+    root   /usr/share/nginx/html;
 }
 
 location ~ \.php$ {
-try_files $uri =404;
-fastcgi_index  index.php;
-fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
-include        fastcgi_params;
-fastcgi_pass   unix:/var/run/php5-fpm.sock;
+    try_files $uri =404;
+    fastcgi_index  index.php;
+    fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+    include        fastcgi_params;
+    fastcgi_pass   unix:/var/run/php5-fpm.sock;
 }
+</code></pre>
 
-```
-Restart nginx
-```
-systemctl restart nginx.service
-```
-Create bot program folder
-```
-mkdir -d /var/www/bot/[token]/
-```
-Copy PHP sample code:
-https://core.telegram.org/bots/samples/hellobot
+<p>Restart nginx</p>
 
-```
-cd /var/www/bot/[token]/
+<pre><code>systemctl restart nginx.service
+</code></pre>
+
+<p>Create bot program folder</p>
+
+<pre><code>mkdir -d /var/www/bot/[token]/
+</code></pre>
+
+<p>Copy PHP sample code:
+https://core.telegram.org/bots/samples/hellobot</p>
+
+<pre><code>cd /var/www/bot/[token]/
 vim hellobot.php 
-```
-Change settings:
-```
-<?php
+</code></pre>
+
+<p>Change settings:</p>
+
+<pre><code>&lt;?php
 define('BOT_TOKEN', '12345678:replace-me-with-real-token');
 define('API_URL', 'https://api.telegram.org/bot'.BOT_TOKEN.'/');
 ...
+</code></pre>
 
-```
+<p>Let Telegram knows your webhook, setWebHook:(self sign only, need to upload your public key to telegram)</p>
 
-Let Telegram knows your webhook, setWebHook:(self sign only, need to upload your public key to telegram)
-```
-$ curl -F "url=https://subdomain.domain.com/[token]/hellobot.php" -F "certificate=@/etc/nginx/sslkeys/botname.pem" https://api.telegram.org/bot[toke]/setWebhook
-```
+<pre><code>$ curl -F "url=https://subdomain.domain.com/[token]/hellobot.php" -F "certificate=@/etc/nginx/sslkeys/botname.pem" https://api.telegram.org/bot[toke]/setWebhook
+</code></pre>
 
-try start your bot.
+<p>try start your bot.</p>
 
-DONE
+<p>DONE
+0</p>
