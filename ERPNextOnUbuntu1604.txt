@@ -21,10 +21,21 @@ sudo apt-get -y install python-minimal
 sudo apt-get -y install python-pip
 sudo apt-get -y install libmysqlclient-dev
 
+#################################################################
 # Install MySQL
 sudo apt-get -y install mysql-server
-
 sudo mysql_secure_installation
+
+#################################################################
+# Install MariaDB 10+
+sudo apt-get -y install software-properties-common
+sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
+sudo add-apt-repository 'deb [arch=amd64,i386,ppc64el http://ftp.osuosl.org/pub/mariadb/repo/10.1/ubuntu xenial main'
+sudo apt-get update
+
+sudo apt-get -y install mariadb-server mariadb-client
+
+
 
 
 #install Nginx
