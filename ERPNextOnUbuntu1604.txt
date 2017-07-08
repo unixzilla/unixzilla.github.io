@@ -15,6 +15,7 @@ wkhtmltopdf with patched Qt (for pdf generation)
 sudo apt-get -y update && sudo apt-get -y upgrade
 sudo apt-get -y install git
 sudo apt-get -y install curl
+sudo apt-get -y install vim
 
 # Install python 2.7
 sudo apt-get -y install python-minimal
