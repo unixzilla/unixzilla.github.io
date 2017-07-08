@@ -55,6 +55,8 @@ wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | 
 
 #logout and login again to run new bash profile
 
+source .profile
+
 nvm ls-remote
 #look for latest stable npm version 
 nvm install 6.11.0
