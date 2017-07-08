@@ -1,0 +1,83 @@
+Last updated: 6 July 2017
+Linux: Ubuntu 16.04
+
+Install Pre-requisites
+
+Python 2.7
+MariaDB 10+ I will use MySQL instead.
+Nginx (for production)
+Nodejs
+Redis
+cron (crontab is required)
+wkhtmltopdf with patched Qt (for pdf generation)
+
+
+sudo apt-get -y update & apt-get -y upgrade
+sudo apt-get install git
+
+# Install python 2.7
+sudo apt-get install python-minimal
+sudo apt-get install python-pip
+sudo apt-get install libmysqlclient-dev
+
+# Install MySQL
+sudo apt-get install mysql-server
+
+sudo mysql_secure_installation
+
+
+#install Nginx
+sudo apt-get install nginx
+
+
+#install NVM
+sudo apt-get install build-essential libssl-dev
+#Goto Github check nvm install latest version
+
+https://github.com/creationix/nvm
+
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+
+or
+wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+
+#logout and login again to run new bash profile
+
+nvm ls-remote
+#look for latest stable npm version 
+nvm install 6.11.0
+
+[NON ROOT USER AS WELL]
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+source ~/.profile
+nvm install 6.11.0
+
+#install Redis server
+sudo apt-get install build-essential tcl
+#Ref: https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-redis-on-ubuntu-16-04
+#Ref: https://www.digitalocean.com/community/tutorials/how-to-secure-your-redis-installation-on-ubuntu-14-04
+
+echo "digital-ocean" | sha256sum
+Redis Key: 960c3dac4fa81b4204779fd16ad7c954f95942876b9c4fb1a255667a9dbe389d
+
+# install Bench [ NON ROOT USER ]
+git clone https://github.com/frappe/bench bench-repo
+sudo pip install -e bench-repo
+
+
+
+
+
+
+[mysqld]
+innodb-file-format=barracuda
+innodb-file-per-table=1
+innodb-large-prefix=1
+character-set-client-handshake = FALSE
+character-set-server = utf8mb4
+collation-server = utf8mb4_unicode_ci
+sql-mode=""
+
+
+[mysql]
+default-character-set = utf8mb4
