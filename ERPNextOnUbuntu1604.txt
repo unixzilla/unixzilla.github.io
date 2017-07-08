@@ -28,11 +28,11 @@ sudo mysql_secure_installation
 
 
 #install Nginx
-sudo apt-get install nginx
+sudo apt-get -y install nginx
 
 
 #install NVM
-sudo apt-get install build-essential libssl-dev
+sudo apt-get -y install build-essential libssl-dev
 #Goto Github check nvm install latest version
 
 https://github.com/creationix/nvm
