@@ -147,6 +147,8 @@ Redis Key: 960c3dac4fa81b4204779fd16ad7c954f95942876b9c4fb1a255667a9dbe389d
 git clone https://github.com/frappe/bench bench-repo
 sudo pip install -e bench-repo
 
+bench init frappe-bench && cd frappe-bench
+
 bench new-site www.demo.com
 
 bench get-app erpnext https://github.com/frappe/erpnext
