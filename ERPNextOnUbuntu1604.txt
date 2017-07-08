@@ -61,15 +61,81 @@ nvm ls-remote
 #look for latest stable npm version 
 nvm install 6.11.0
 
+################################ Example install in normal user account ############################
 [NON ROOT USER AS WELL]
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
 source ~/.profile
 nvm install 6.11.0
+################################ END Example ############################
+
 
 #install Redis server
 sudo apt-get install build-essential tcl
 #Ref: https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-redis-on-ubuntu-16-04
 #Ref: https://www.digitalocean.com/community/tutorials/how-to-secure-your-redis-installation-on-ubuntu-14-04
+
+cd /tmp
+curl -O http://download.redis.io/redis-stable.tar.gz
+
+tar xzf redis-stable.tar.gz
+
+cd redis-stable
+
+make
+
+make test
+
+sudo make install
+###
+###Configure Redis
+###
+
+sudo mkdir /etc/redis
+
+sudo cp /tmp/redis-stable/redis.conf /etc/redis
+
+sudo vim /etc/redis/redis.conf
+# look for supervised 
+# change it
+supervised systemd
+# look for dir 
+# change it
+dir /var/lib/redis
+
+
+sudo vim /etc/systemd/system/redis.service
+
+######################## redis.service #######################
+[Unit]
+Description=Redis In-Memory Data Store
+After=network.target
+
+[Service]
+User=redis
+Group=redis
+ExecStart=/usr/local/bin/redis-server /etc/redis/redis.conf
+ExecStop=/usr/local/bin/redis-cli shutdown
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+#################################################
+
+sudo adduser --system --group --no-create-home redis
+
+sudo mkdir /var/lib/redis
+sudo chown redis:redis /var/lib/redis
+sudo chmod 770 /var/lib/redis
+
+
+sudo systemctl start redis
+sudo systemctl status redis
+
+sudo systemctl enable redis
+
+
+
+###########################################
 
 echo "digital-ocean" | sha256sum
 Redis Key: 960c3dac4fa81b4204779fd16ad7c954f95942876b9c4fb1a255667a9dbe389d
