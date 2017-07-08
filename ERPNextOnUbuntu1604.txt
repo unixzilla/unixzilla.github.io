@@ -12,7 +12,7 @@ cron (crontab is required)
 wkhtmltopdf with patched Qt (for pdf generation)
 
 
-sudo apt-get -y update && apt-get -y upgrade
+sudo apt-get -y update && sudo apt-get -y upgrade
 sudo apt-get install git
 
 # Install python 2.7
