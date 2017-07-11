@@ -175,3 +175,26 @@ sql-mode=""
 
 [mysql]
 default-character-set = utf8mb4
+##########################################################################################
+
+############## If you are using SMTP from Mandrill, modify following config in /sites/site_name.com/site_config.json #############
+{
+ "": "",
+ "db_name": "24bf68e341ce0fbd",
+ "db_password": "3u9sKWQGZbPznbje",
+ "limits": {
+  "space_usage": {
+   "backup_size": 1.0,
+   "database_size": 10.05,
+   "files_size": 2.0,
+   "total": 13.05
+  }
+ },
+ "mail_login": "mandrill username",
+ "mail_password": "lasdjflj23oijrl23jr",
+ "mail_port": 587,
+ "mail_server": "smtp.mandrillapp.com",
+ "use_ssl": 1,
+ "auto_email_id":"test@example.com"
+}
+###########################################################
