@@ -143,8 +143,18 @@ sudo systemctl enable redis
 echo "digital-ocean" | sha256sum
 Redis Key: 960c3dac4fa81b4204779fd16ad7c954f95942876b9c4fb1a255667a9dbe389d
 
+##### Install wkhtmltopdf ############
+#sudo apt-get install xvfb libfontconfig wkhtmltopdf
+# ubuntu 16.04 name is Xenial
 
-sudo apt-get install xvfb libfontconfig wkhtmltopdf
+sudo apt-get install libxrender1 fontconfig xvfb
+wget http://download.gna.org/wkhtmltopdf/0.12/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz -P /tmp/
+cd /opt/
+sudo tar xf /tmp/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz
+sudo ln -s /opt/wkhtmltox/bin/wkhtmltopdf /usr/bin/wkhtmltopdf
+
+
+######################################
 
 # install Bench [ NON ROOT USER ]
 git clone https://github.com/frappe/bench bench-repo
