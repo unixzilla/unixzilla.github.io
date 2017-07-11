@@ -143,6 +143,9 @@ sudo systemctl enable redis
 echo "digital-ocean" | sha256sum
 Redis Key: 960c3dac4fa81b4204779fd16ad7c954f95942876b9c4fb1a255667a9dbe389d
 
+
+sudo apt-get install xvfb libfontconfig wkhtmltopdf
+
 # install Bench [ NON ROOT USER ]
 git clone https://github.com/frappe/bench bench-repo
 sudo pip install -e bench-repo
