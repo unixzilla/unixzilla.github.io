@@ -219,4 +219,15 @@ default-character-set = utf8mb4
 sudo apt-get install supervisor
 sudo service supervisor restart
 
+bench setup supervisor
 
+sudo ln -s `pwd`/config/supervisor.conf /etc/supervisor/conf.d/frappe-bench.conf
+
+sudo bench setup sudoers $(whoami)
+
+bench setup nginx 
+sudo ln -s `pwd`/config/nginx.conf /etc/nginx/conf.d/frappe-bench.conf
+
+##
+Note: When you restart nginx after the configuration change, it might fail if you have another configuration with server block as default for port 80 (in most cases for the nginx welcome page). You will have to disable this config. Most probable places for it to exist are /etc/nginx/conf.d/default.conf and /etc/nginx/conf.d/default.
+##
