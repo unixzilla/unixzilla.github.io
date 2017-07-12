@@ -211,3 +211,12 @@ default-character-set = utf8mb4
  "auto_email_id":"test@example.com"
 }
 ###########################################################
+
+
+###############  If you ready to Production ################
+## Ref: https://frappe.github.io/frappe/user/en/bench/guides/setup-production.html
+
+sudo apt-get install supervisor
+sudo service supervisor restart
+
+
