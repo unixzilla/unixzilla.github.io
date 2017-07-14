@@ -48,6 +48,13 @@ sudo add-apt-repository ppa:certbot/certbot
 sudo apt-get update
 sudo apt-get install python-certbot-nginx
 
+sudo certbot certonly --webroot --webroot-path=/var/www/html -d www.example.com
+
+sudo openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
+
+# REF
+https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04
+
 #install NVM
 sudo apt-get -y install build-essential libssl-dev
 #Goto Github check nvm install latest version
