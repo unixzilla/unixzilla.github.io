@@ -199,6 +199,8 @@ sql-mode=""
 [mysql]
 default-character-set = utf8mb4
 ##########################################################################################
+sudo service mysql restart
+
 
 ############## If you are using SMTP from Mandrill, modify following config in /sites/site_name.com/site_config.json #############
 {
