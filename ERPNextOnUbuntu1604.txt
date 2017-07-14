@@ -43,6 +43,7 @@ sudo apt-get install libmysqlclient-dev
 
 #install Nginx
 sudo apt-get -y install nginx
+ufw allow 'Nginx Full'
 sudo add-apt-repository ppa:certbot/certbot
 sudo apt-get update
 sudo apt-get install python-certbot-nginx
