@@ -256,6 +256,19 @@ bench setup nginx
 
 sudo service nginx reload
 
+############### Remove Site #######################
+# Frist, Change default site
+bench use sitename2
+
+bench drop-site [sitename]
+
+you need the root mysql password in order to remove it. There is a backup being kept in /home/frappe/frappe-bench/archived_sites/[sitename]
+
+Without having tried it I assume that you (once having decided never to need that site ever again) just can remove/delete that archive folder
+
+
+
+
 
 
 
