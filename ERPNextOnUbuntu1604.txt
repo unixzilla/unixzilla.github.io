@@ -243,3 +243,19 @@ sudo ln -s `pwd`/config/nginx.conf /etc/nginx/conf.d/frappe-bench.conf
 ##
 Note: When you restart nginx after the configuration change, it might fail if you have another configuration with server block as default for port 80 (in most cases for the nginx welcome page). You will have to disable this config. Most probable places for it to exist are /etc/nginx/conf.d/default.conf and /etc/nginx/conf.d/default.
 ##
+#
+
+################ Build Multiple ERP Sites base on hostname #########################
+#https://github.com/frappe/bench/wiki/Multitenant-Setup
+
+bench config dns_multitenant on
+
+bench new-site site2name
+
+bench setup nginx
+
+sudo service nginx reload
+
+
+
+
